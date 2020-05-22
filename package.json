@@ -1,0 +1,19 @@
+{
+  "name": "webrtc-try",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node wsServer.js",
+    "serve": "serve --ssl-cert server.cert --ssl-key server.key",
+    "debug": "node --inspect wsServer.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "serve": "^11.3.0",
+    "ws": "^7.3.0"
+  }
+}
