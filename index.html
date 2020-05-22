@@ -14,15 +14,30 @@
       <tr>
         <td>
           <span>Signaling Server addres:</span>
-          <input type="text" id="serverAddress" value="" onload="window.serverAddress = this;" />
+          <input
+            type="text"
+            id="serverAddress"
+            value=""
+            onload="window.serverAddress = this;"
+          />
         </td>
         <td>
           <span>Username:</span>
-          <input type="text" id="username" value="user1" onload="window.username = this;" />
+          <input
+            type="text"
+            id="username"
+            value="user1"
+            onload="window.username = this;"
+          />
         </td>
         <td>
           <span>Target username:</span>
-          <input type="text" id="remoteUsername" value="user2" onload="window.remoteUsername = this;" />
+          <input
+            type="text"
+            id="remoteUsername"
+            value="user2"
+            onload="window.remoteUsername = this;"
+          />
         </td>
         <td>Devices</td>
       </tr>
@@ -46,11 +61,23 @@
           ></video>
         </td>
         <td>
-          <video id="remoteVideo" autoplay playsinline onload="window.remoteVideo = this;"></video deo>
+          <video
+            id="remoteVideo"
+            autoplay
+            playsinline
+            onload="window.remoteVideo = this;"
+          ></video>
         </td>
         <td rowspan="2">
           <div>
-            <div>Video:<input id="videoCheck" type="checkbox" onload="window.videoCheck = this;" checked /></div>
+            <div>
+              Video:<input
+                id="videoCheck"
+                type="checkbox"
+                onload="window.videoCheck = this;"
+                checked
+              />
+            </div>
             <select
               id="videoDevices"
               size="5"
@@ -59,7 +86,13 @@
             ></select>
           </div>
           <div>
-            <div>Audio:<input id="audioCheck" type="checkbox" onload="window.audioCheck = this;" /></div>
+            <div>
+              Audio:<input
+                id="audioCheck"
+                type="checkbox"
+                onload="window.audioCheck = this;"
+              />
+            </div>
             <select
               id="audioDevices"
               size="5"
