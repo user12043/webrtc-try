@@ -11,11 +11,11 @@ const server = https.createServer({
   console.log("server started");
 }); */
 
-const wsserver = new WebSocket.Server({ server });
+const wss = new WebSocket.Server({ server });
 
 let clients = [];
 
-wsserver.on("connection", (socket) => {
+wss.on("connection", (socket) => {
   socket.on("message", (message) => {
     console.log("Message: %s", message);
 
@@ -61,4 +61,9 @@ wsserver.on("connection", (socket) => {
   // });
 });
 
-server.listen(3001, "0.0.0.0");
+server.listen({
+  port: 3001,
+  host: "0.0.0.0"
+}, () => {
+  console.log("secure server started");
+});
