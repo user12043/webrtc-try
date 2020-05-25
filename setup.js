@@ -1,4 +1,4 @@
-serverAddress.value = "ws://" + location.hostname + ":3001";
+serverAddress.value = "ws://" + (location.hostname || "localhost") + ":3001";
 
 const detectDevices = (deviceInfos) => {
   for (let i = 0; i !== deviceInfos.length; ++i) {
@@ -25,12 +25,17 @@ navigator.mediaDevices
   })
   .then(detectDevices)
   .then(() => {
-    localStream.getTracks().forEach((t) => t.stop());
-    delete localStream;
+    window.localStream.getTracks().forEach((t) => t.stop());
   })
   .catch((error) => console.log("Error detecting devices", error));
 
 const startSelf = async () => {
+  if (!pc) {
+    pc = new RTCPeerConnection();
+    pc.onicecandidate = onIceCandidate;
+    pc.ontrack = onTrack;
+  }
+
   if (videoCheck.checked && !videoDevices.value) {
     videoDevices.selectedIndex = 0;
   }
@@ -40,10 +45,6 @@ const startSelf = async () => {
   }
   const vDevId = videoDevices.value;
   const aDevId = audioDevices.value;
-  // const constraints = {
-  //   audio: { deviceId: aDevId ? { exact: aDevId } : undefined },
-  //   video: { deviceId: vDevId ? { exact: vDevId } : undefined }
-  // };
   const constraints = {};
   if (videoCheck.checked) {
     constraints.video = { deviceId: vDevId ? { exact: vDevId } : undefined };
@@ -55,7 +56,8 @@ const startSelf = async () => {
     .getUserMedia(constraints)
     .then((stream) => {
       window.localStream = stream;
-      // selfVideo.srcObject = stream;
+      pc.addStream(window.localStream);
+      selfVideo.srcObject = window.localStream;
     })
     .catch((error) => console.log("Error start self", error));
 };

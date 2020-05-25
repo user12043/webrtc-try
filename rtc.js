@@ -1,16 +1,8 @@
 let pc;
 
-const initSelf = async () => {
-  await startSelf();
-  pc = new RTCPeerConnection();
-  pc.onicecandidate = onIceCandidate;
-  pc.ontrack = onTrack;
-  pc.addStream(window.localStream);
-};
-
 const call = async () => {
   if (!window.localStream || !pc) {
-    await initSelf();
+    await startSelf();
   }
   // send offer
   pc.createOffer().then((offer) => {
@@ -23,7 +15,7 @@ const call = async () => {
 const onReceiveOffer = async (receivedOffer) => {
   console.log("offer receive", receivedOffer);
   if (!window.localStream || !pc) {
-    await initSelf();
+    await startSelf();
   }
   pc.setRemoteDescription(new RTCSessionDescription(receivedOffer));
   log.value = JSON.stringify(receivedOffer);
