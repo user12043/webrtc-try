@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "serve": "^11.3.0",
+    "serve": "^14.2.0",
     "ws": "^7.4.6"
   }
 }
